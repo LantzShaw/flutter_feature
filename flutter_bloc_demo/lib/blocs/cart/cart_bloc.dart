@@ -11,13 +11,13 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartInitial()) {
+  CartBloc({required this.shoppingRepository}) : super(CartInitial()) {
     on<CartStarted>(_onStarted);
     on<CartItemRemoved>(_onItemRemoved);
     on<CartItemAdded>(_onItemAdded);
   }
 
-  final shoppingRepository = ShoppingRepository();
+  final ShoppingRepository shoppingRepository;
 
   Future<void> _onStarted(CartStarted event, Emitter<CartState> emit) async {
     final state = this.state;
