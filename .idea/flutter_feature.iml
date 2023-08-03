@@ -2,7 +2,23 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/flutter_tool_kit/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_tool_kit/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_tool_kit/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_provider/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_provider/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_provider/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_getx/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_getx/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_getx/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ui_kit/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ui_kit/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ui_kit/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_bloc/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_bloc/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_bloc/.pub" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
