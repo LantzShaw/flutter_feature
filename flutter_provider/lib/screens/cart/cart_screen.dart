@@ -13,24 +13,54 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _increaseHandler() {
+      context.read<CartProvider>().increment();
+    }
+
+    void _decreaseHandler() {
+      context.read<CartProvider>().decrement();
+    }
+
+    void _onBottomNavigationBarTap(int index) {
+      print('$index');
+    }
+
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        centerTitle: true,
+        title: Text(
+          'Flutter Provider',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: Column(
         children: [
           Center(
             child: Text('${context.watch<CartProvider>().count}'),
           ),
           ElevatedButton(
-            onPressed: () {
-              context.read<CartProvider>().increment();
-            },
+            onPressed: _increaseHandler,
             child: Text('increase'),
           ),
           ElevatedButton(
-            onPressed: () {
-              context.read<CartProvider>().decrement();
-            },
+            onPressed: _decreaseHandler,
             child: Text('decrease'),
           ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0.0,
+        onTap: _onBottomNavigationBarTap,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Home',
+          )
         ],
       ),
     );
