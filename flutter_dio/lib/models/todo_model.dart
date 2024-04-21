@@ -1,16 +1,18 @@
 class Todo {
-  int userId;
-  int id;
-  String title;
+  final int id;
+  final String name;
+  final String username;
+  final String email;
 
-  Todo({required this.userId, required this.id, required this.title});
+  Todo(
+      {required this.id,
+      required this.name,
+      required this.username,
+      required this.email});
 
   Todo.fromJson(Map<String, dynamic> json)
-      : userId = json['useId'],
-        id = json['id'],
-        title = json['title'];
-
-  Map<String, dynamic> toJson() {
-    return {'userId': userId, 'id': id, 'title': title};
-  }
+      : id = json['id'],
+        name = json['name'],
+        username = json['username'],
+        email = json['email'];
 }

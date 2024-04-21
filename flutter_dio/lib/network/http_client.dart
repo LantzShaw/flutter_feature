@@ -4,18 +4,39 @@
 /// https://juejin.cn/post/6962739332922736676
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dio/network/http_transformer.dart';
 
-import '../dio_new.dart';
 import 'app_dio.dart';
 import 'http_config.dart';
 import 'http_parse.dart';
 import 'http_response.dart';
 
 class HttpClient {
-  late AppDio _dio;
+  late final AppDio _dio;
 
-  HttpClient({BaseOptions? options, HttpConfig? dioConfig})
-      : _dio = AppDio(options: options, dioConfig: dioConfig);
+  /// 这里冒号的作用：
+  /// flutter构造函数后的冒号的作用是初始化，注意以下几点：
+  // 1）不同于构造函数内部，这里不能使用this；
+  // 2）这里的初始化可以是多个语句，多个语句之间使用逗号,分隔；
+  // 3）这里可以调用父类构造函数,super();
+  // 4）这里是为final字段赋值;
+  // 5）可以使用assert检查参数
+  // HttpClient({BaseOptions? options, HttpConfig? dioConfig})
+  //     : _dio = AppDio(options: options, dioConfig: dioConfig);
+
+  HttpClient._internal() {
+    HttpConfig dioConfig = HttpConfig(
+      baseUrl: 'https://jsonplaceholder.typicode.com',
+      // proxy: '',
+      // interceptors: [NetCacheInterceptor()],
+    );
+
+    _dio = AppDio(dioConfig: dioConfig);
+  }
+
+  factory HttpClient() => _instance;
+
+  static late final HttpClient _instance = HttpClient._internal();
 
   Future<HttpResponse> get(String uri,
       {Map<String, dynamic>? queryParameters,
@@ -31,9 +52,10 @@ class HttpClient {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-      return handleResponse(response, httpTransformer: httpTransformer);
+
+      return responseHandler(response, httpTransformer: httpTransformer);
     } on Exception catch (e) {
-      return handleException(e);
+      return exceptionHandler(e);
     }
   }
 
@@ -55,9 +77,10 @@ class HttpClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return handleResponse(response, httpTransformer: httpTransformer);
+
+      return responseHandler(response, httpTransformer: httpTransformer);
     } on Exception catch (e) {
-      return handleException(e);
+      return exceptionHandler(e);
     }
   }
 
@@ -79,9 +102,10 @@ class HttpClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return handleResponse(response, httpTransformer: httpTransformer);
+
+      return responseHandler(response, httpTransformer: httpTransformer);
     } on Exception catch (e) {
-      return handleException(e);
+      return exceptionHandler(e);
     }
   }
 
@@ -99,9 +123,10 @@ class HttpClient {
         options: options,
         cancelToken: cancelToken,
       );
-      return handleResponse(response, httpTransformer: httpTransformer);
+
+      return responseHandler(response, httpTransformer: httpTransformer);
     } on Exception catch (e) {
-      return handleException(e);
+      return exceptionHandler(e);
     }
   }
 
@@ -119,9 +144,10 @@ class HttpClient {
         options: options,
         cancelToken: cancelToken,
       );
-      return handleResponse(response, httpTransformer: httpTransformer);
+
+      return responseHandler(response, httpTransformer: httpTransformer);
     } on Exception catch (e) {
-      return handleException(e);
+      return exceptionHandler(e);
     }
   }
 
@@ -146,6 +172,7 @@ class HttpClient {
         data: data,
         options: data,
       );
+
       return response;
     } catch (e) {
       throw e;

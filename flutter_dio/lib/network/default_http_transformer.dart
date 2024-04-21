@@ -6,15 +6,16 @@ import 'http_response.dart';
 class DefaultHttpTransformer extends HttpTransformer {
   @override
   HttpResponse parse(Response response) {
-    if (response.data['status'] == 100) {
-      return HttpResponse.success(response.data['data']);
-    } else if (response.data['code'] == 1 && response.data['msg'] == '成功') {
-      return HttpResponse.success(response.data['data']);
-    } else {
-      return HttpResponse.failure(
-          errorMessage: response.data['message'],
-          errorCode: response.data['code']);
-    }
+    return HttpResponse.success(response);
+    // if (response.data['status'] == 100) {
+    //   return HttpResponse.success(response.data['data']);
+    // } else if (response.data['code'] == 1 && response.data['msg'] == '成功') {
+    //   return HttpResponse.success(response.data['data']);
+    // } else {
+    //   return HttpResponse.failure(
+    //       errorMessage: response.data['message'],
+    //       errorCode: response.data['code']);
+    // }
   }
 
   /// 单例对象

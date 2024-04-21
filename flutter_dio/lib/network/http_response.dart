@@ -1,8 +1,8 @@
 import 'package:flutter_dio/network/http_exception.dart';
 
-class HttpResponse {
+class HttpResponse<T> {
   late bool ok;
-  dynamic? data;
+  T? data;
   HttpException? error;
 
   HttpResponse._internal({this.ok = false});
