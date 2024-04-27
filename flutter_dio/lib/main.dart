@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dio/models/todo_model.dart';
 import 'package:flutter_dio/network/http_client.dart';
 import 'package:flutter_dio/network/http_response.dart';
+import 'package:flutter_dio/providers/todo_provider.dart';
+import 'package:flutter_dio/screens/todo/todo_screen.dart';
 import 'package:flutter_dio/services/todo_api_service.dart';
+import 'package:provider/provider.dart';
 
 // import 'net_cache.dart';
 
@@ -26,15 +29,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // 单个
+  // ChangeNotifierProvider(create: (_) => TodoProvider(), child: Scaffold())
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Dio Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => TodoProvider())],
+      child: MaterialApp(
+        title: 'Flutter Dio Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+          useMaterial3: true,
+          shadowColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          splashFactory: NoSplash.splashFactory,
+        ),
+        // home: const MyHomePage(title: 'Flutter Dio Demo Home Page'),
+        home: TodoScreen(),
       ),
-      home: const MyHomePage(title: 'Flutter Dio Demo Home Page'),
     );
   }
 }
