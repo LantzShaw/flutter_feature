@@ -37,6 +37,20 @@ CheckboxListTile(
   ),
 ```
 
+```dart
+/// 即ScrollNotification事件以及如何监听和拦截滚动通知
+/// 用于截取滚动事件
+NotificationListener(
+  onNotification: () {
+    
+    return true; // 表示不往上冒泡
+
+    return false; // 表示还要往上冒泡
+},
+  child: Text('123')
+)
+
+```
 
 ## Questions
 

@@ -5,7 +5,7 @@ import 'package:flutter_dio/network/http_client.dart';
 import 'package:flutter_dio/network/http_response.dart';
 import 'package:flutter_dio/providers/todo_provider.dart';
 import 'package:flutter_dio/screens/todo/todo_screen.dart';
-import 'package:flutter_dio/services/todo_api_service.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 
 // import 'net_cache.dart';
@@ -46,9 +46,15 @@ class MyApp extends StatelessWidget {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           splashFactory: NoSplash.splashFactory,
+          buttonTheme: ButtonThemeData(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
         ),
         // home: const MyHomePage(title: 'Flutter Dio Demo Home Page'),
         home: TodoScreen(),
+        builder: EasyLoading.init(),
       ),
     );
   }
@@ -83,11 +89,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void getData() async {
-    List<Todo> todoList = await TodoApiService.fetchTodoList();
+    // List<Todo> todoList = await TodoApiService.fetchTodoList();
 
-    print('=========toto list========${todoList[0].username}');
+    // print('=========toto list========${todoList[0].username}');
 
-    return;
+    // return;
 
     // final response =
     //     await dio.get('https://jsonplaceholder.typicode.com/users');

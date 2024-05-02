@@ -1,7 +1,7 @@
 import 'package:flutter_dio/network/http_exception.dart';
 
 class HttpResponse<T> {
-  late bool ok;
+  bool ok = false;
   T? data;
   HttpException? error;
 
